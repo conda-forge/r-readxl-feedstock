@@ -1,4 +1,4 @@
-{% set version = '1.0.0' %}
+{% set version = "1.1.0" %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,7 +12,7 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/readxl_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/readxl/readxl_{{ version }}.tar.gz
-  sha256: fbd62f07fed7946363698a57be88f4ef3fa254ecf456ef292535849c787fc7ad
+  sha256: b63d21fc6510acb373e96deaec45e966a523ec75cbec75a089529297ed443116
 
 build:
   number: 0
