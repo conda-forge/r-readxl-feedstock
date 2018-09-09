@@ -1,5 +1,4 @@
-{% set version = "1.1.0" %}
-
+{% set version = '1.1.0' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,52 +9,60 @@ package:
 source:
   fn: readxl_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/readxl_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/readxl/readxl_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/readxl_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/readxl/readxl_{{ version }}.tar.gz
   sha256: b63d21fc6510acb373e96deaec45e966a523ec75cbec75a089529297ed443116
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 2
   skip: true  # [win32]
-
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ compiler('cxx') }}        # [unix]
-    - {{ compiler('m2w64_cxx') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('cxx') }}      # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
-    - r-rcpp
+    - r-rcpp >=0.12.12
     - r-cellranger
     - r-tibble >=1.1
-
   run:
     - r-base
-    - r-rcpp
+    - {{native}}gcc-libs         # [win]
+    - r-rcpp >=0.12.12
     - r-cellranger
     - r-tibble >=1.1
 
 test:
   commands:
-    - $R -e "library('readxl')"  # [not win]
+    - $R -e "library('readxl')"           # [not win]
     - "\"%R%\" -e \"library('readxl')\""  # [win]
 
 about:
   home: http://readxl.tidyverse.org, https://github.com/tidyverse/readxl
   license: GPL-3
-  summary: Import excel files into R. Supports '.xls' via the embedded 'libxls' C library <https://sourceforge.net/projects/libxls/>
+  summary: Import excel files into R. Supports '.xls' via the embedded 'libxls' C library <https://github.com/evanmiller/libxls>
     and '.xlsx' via the embedded 'RapidXML' C++ library <https://rapidxml.sourceforge.net>.
     Works on Windows, Mac and Linux without external dependencies.
   license_family: GPL3
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/GPL-3'  # [unix]
+  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\GPL-3'  # [win]
 
 extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
