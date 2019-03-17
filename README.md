@@ -5,13 +5,13 @@
 About r-readxl
 ==============
 
-Home: http://readxl.tidyverse.org, https://github.com/tidyverse/readxl
+Home: https://readxl.tidyverse.org, https://github.com/tidyverse/readxl
 
 Package license: GPL-3
 
 Feedstock license: BSD 3-Clause
 
-Summary: Import excel files into R. Supports '.xls' via the embedded 'libxls' C library <https://github.com/evanmiller/libxls> and '.xlsx' via the embedded 'RapidXML' C++ library <http://rapidxml.sourceforge.net>.  Works on Windows, Mac and Linux without external dependencies.
+Summary: Import excel files into R. Supports '.xls' via the embedded 'libxls' C library <https://github.com/libxls/libxls> and '.xlsx' via the embedded 'RapidXML' C++ library <http://rapidxml.sourceforge.net>.  Works on Windows, Mac and Linux without external dependencies.
 
 
 
