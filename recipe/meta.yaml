@@ -23,6 +23,11 @@ build:
 
 requirements:
   build:
+    - cross-r-base {{ r_base }}  # [build_platform != target_platform]
+    - r-progress                 # [build_platform != target_platform]
+    - r-tibble                   # [build_platform != target_platform]
+    - r-rcpp                     # [build_platform != target_platform]
+    - r-cellranger               # [build_platform != target_platform]
     - {{ compiler('c') }}        # [not win]
     - {{ compiler('cxx') }}      # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
