@@ -3,7 +3,7 @@ About r-readxl
 
 Home: https://readxl.tidyverse.org, https://github.com/tidyverse/readxl
 
-Package license: GPL-3.0-only
+Package license: MIT
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-readxl-feedstock/blob/main/LICENSE.txt)
 
