@@ -1,4 +1,4 @@
-{% set version = "1.4.3" %}
+{% set version = "1.4.4" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,12 +9,12 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/readxl_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/readxl/readxl_{{ version }}.tar.gz
-  sha256: 7efebbcdefeb8523633db62b3eeb6ea2e4e81e3d010d8b2adb134011c09a5948
+  sha256: a14f96b77c560b75df7b1bbb2f87e4a248a0223a7d680aafb24de0bef16c8cfe
   patches:
     - r-readxl-libiconv.patch
 
 build:
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
